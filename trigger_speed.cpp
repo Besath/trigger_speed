@@ -3,13 +3,13 @@
 LINK_ENTITY_TO_CLASS(trigger_speed, CTriggerSpeed);
 
 BEGIN_DATADESC(CTriggerSpeed)
-	DEFINE_KEYFIELD(m_fSpeed, FIELD_FLOAT, "speed")
+  DEFINE_KEYFIELD(m_fSpeed, FIELD_FLOAT, "speed")
 END_DATADESC()
 
 void CTriggerSpeed::Spawn(void)
 {
-	BaseClass::Spawn();
-	InitTrigger();
+  BaseClass::Spawn();
+  InitTrigger();
 }
 
 //-----------------------------------------------------------------------------
@@ -18,11 +18,11 @@ void CTriggerSpeed::Spawn(void)
 //-----------------------------------------------------------------------------
 void CTriggerSpeed::StartTouch(CBaseEntity *pOther)
 {
-	if (!TestSpeed(pOther))
-	{
+  if (!TestSpeed(pOther))
+  {
     TeleportActivator(pOther);
-		return;
-	}
+    return;
+  }
 
   BaseClass::StartTouch(pOther);	
 }
@@ -33,13 +33,13 @@ void CTriggerSpeed::StartTouch(CBaseEntity *pOther)
 //-----------------------------------------------------------------------------
 void CTriggerSpeed::EndTouch(CBaseEntity *pOther)
 {
-	if (!TestSpeed(pOther))
-	{
+  if (!TestSpeed(pOther))
+  {
     TeleportActivator(pOther);
-		return;
-	}
+    return;
+  }
 
-    BaseClass::EndTouch(pOther);	
+  BaseClass::EndTouch(pOther);	
 }
 
 //----------------------------------------------------------------------------
@@ -59,29 +59,29 @@ bool CTriggerSpeed::TestSpeed(CBaseEntity *pActivator)
 //----------------------------------------------------------------------------
 void CTriggerSpeed::TeleportActivator(CBaseEntity *pActivator)
 {
-	CBaseEntity *pentTarget = NULL;
+  CBaseEntity *pentTarget = NULL;
 
-	pentTarget = gEntList.FindEntityByName(pentTarget, m_target, NULL, pActivator, pActivator);
+  pentTarget = gEntList.FindEntityByName(pentTarget, m_target, NULL, pActivator, pActivator);
 
-	if (!pentTarget)
-	{
-		return;
-	}
+  if (!pentTarget)
+  {
+    return;
+  }
 
-	pActivator->SetGroundEntity(NULL);
-    Vector tmp = pentTarget->GetAbsOrigin();
+  pActivator->SetGroundEntity(NULL);
+  Vector tmp = pentTarget->GetAbsOrigin();
 
-	if (pActivator->IsPlayer())
-	{
-		// make origin adjustments in case the teleportee is a player. (origin in center, not at feet)
-		tmp.z -= pActivator->WorldAlignMins().z;
-	}
-  
-    // face the direction of teleport destination
-	const QAngle *pAngles = &pentTarget->GetAbsAngles();
-    // make velocity a zero vector because NULL doesn't set it to zero
-    Vector vecZero(0, 0, 0);
-	Vector *pVelocity = &vecZero;
-  
-    pActivator->Teleport( &tmp, pAngles, pVelocity );
+  if (pActivator->IsPlayer())
+  {
+    // make origin adjustments in case the teleportee is a player. (origin in center, not at feet)
+    tmp.z -= pActivator->WorldAlignMins().z;
+  }
+
+  // face the direction of teleport destination
+  const QAngle *pAngles = &pentTarget->GetAbsAngles();
+  // make velocity a zero vector because NULL doesn't set it to zero
+  Vector vecZero(0, 0, 0);
+  Vector *pVelocity = &vecZero;
+
+  pActivator->Teleport( &tmp, pAngles, pVelocity );
 }
