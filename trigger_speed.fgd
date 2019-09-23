@@ -1,0 +1,8 @@
+@SolidClass base(TriggerOnce) = trigger_speed : 
+"A trigger that fires its OnStartTouch and OnEndTouch outputs if the activator's speed matches the criteria, otherwise teleporting the player to the specified destination" 
+[
+    speed(float) : "Max. speed" : : "Maximum speed the activator can be moving at for the outputs to fire."
+    target(target_destination) : "Remote Destination" : : "The entity specifying the point to which entities should be teleported."
+
+    output OnEndTouch(void) : "Fired when an entity stops touching this trigger. Only entities that passed this trigger's filters will cause this output to fire."
+]
