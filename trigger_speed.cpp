@@ -39,7 +39,7 @@ void CTriggerSpeed::EndTouch(CBaseEntity *pOther)
 		return;
 	}
 
-  BaseClass::EndTouch(pOther);	
+    BaseClass::EndTouch(pOther);	
 }
 
 //----------------------------------------------------------------------------
@@ -69,7 +69,7 @@ void CTriggerSpeed::TeleportActivator(CBaseEntity *pActivator)
 	}
 
 	pActivator->SetGroundEntity(NULL);
-  Vector tmp = pentTarget->GetAbsOrigin();
+    Vector tmp = pentTarget->GetAbsOrigin();
 
 	if (pActivator->IsPlayer())
 	{
@@ -77,11 +77,11 @@ void CTriggerSpeed::TeleportActivator(CBaseEntity *pActivator)
 		tmp.z -= pActivator->WorldAlignMins().z;
 	}
   
-  // face the direction of teleport destination
+    // face the direction of teleport destination
 	const QAngle *pAngles = &pentTarget->GetAbsAngles();
-  // make velocity a zero vector because NULL doesn't set it to zero
-  Vector vecZero(0, 0, 0);
+    // make velocity a zero vector because NULL doesn't set it to zero
+    Vector vecZero(0, 0, 0);
 	Vector *pVelocity = &vecZero;
   
-  pActivator->Teleport( &tmp, pAngles, pVelocity );
+    pActivator->Teleport( &tmp, pAngles, pVelocity );
 }

@@ -8,8 +8,8 @@ class CTriggerSpeed : public CBaseTrigger
 public:
 	void Spawn(void);
 	void StartTouch(CBaseEntity *pOther);
-  void EndTouch(CBaseEntity *pOther);
-  bool TestSpeed(CBaseEntity *pActivator);
+    void EndTouch(CBaseEntity *pOther);
+    bool TestSpeed(CBaseEntity *pActivator);
 	void TeleportActivator(CBaseEntity *pActivator);
 
 	DECLARE_DATADESC();
